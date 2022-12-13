@@ -1,0 +1,8 @@
+@media screen and (min-width: 400px) and (max-width: 700px){
+    .fixed-bottom {
+        position: -webkit-sticky;
+        position: sticky;
+        bottom: 0;
+        z-index: 1020;
+    }
+}
