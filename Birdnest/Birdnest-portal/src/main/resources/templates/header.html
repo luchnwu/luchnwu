@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 模版</title>
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<!--導航欄開始-->
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img alt="Brand" src="img/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!--導航欄左邊開始-->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">品牌介紹</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="true">
+                            商品列表
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="item-list.html">燕窩</a></li>
+                            <li><a class="dropdown-item" href="#">產品一</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">產品二</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">加入經銷</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            商品列表
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">珍珠</a></li>
+                            <li><a class="dropdown-item" href="#">產品一</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">產品二</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--導航欄左邊結束-->
+                <!--導航欄右邊開始-->
+                <ul class="navbar-nav">
+                    <!--下拉購物車開始-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <i class="bi-cart2" style="font-size: 30px;"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" style="height:600px;width:420px;overflow:auto;">
+                            <form id="headMarketsApp">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <table class="table table-hover">
+                                            <tr v-for="market in markets">
+                                                <td>
+                                                    <div class="">
+                                                        <img class="thumbnail img-responsive" width="200px"
+                                                             alt="..."
+                                                             src="#" v-bind:src="market.img"/>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="">
+                                                        <p class="h6"><br>
+                                                        <p v-text="market.name"></p>
+                                                        <p v-text="market.introduction"></p>
+                                                    </div>
+                                                    <p class="h6 text-danger">$<span v-text="market.price"></span>
+                                                    </p>
+                                                    <br>
+                                                    <div class="btn-group" role="group"
+                                                         aria-label="Basic outlined example">
+                                                        <input type="button" class="btn btn-outline-primary"
+                                                               v-on:click="decrease(market.paymarketId)"
+                                                               value="-">
+                                                        <input type="button" class="btn btn-outline-primary"
+                                                               v-bind:value="market.productCount">
+                                                        <input type="button" class="btn btn-outline-primary"
+                                                               v-on:click="increase(market.paymarketId)"
+                                                               value="+">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <br><br>
+                                                    <i v-on:click="del(market.paymarketId)"
+                                                       class="btn bi-trash" style="font-size: 2rem"></i>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="  d-md-flex justify-content-md-end">
+                                            <a type="button" class="btn btn-danger col-6"
+                                               href="pay-market.html">立即購買</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <!--下拉購物車結束-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            會員專區
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="login.html">會員登入</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">基本資料</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">訂單查詢</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">收藏</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/logout">會員登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--導航欄右邊結束-->
+            </div>
+        </div>
+    </nav>
+</header>
+<!--導航欄結束-->
+
+<main>
+
+    <div class="container">
+        Bootstrap 模版
+    </div>
+
+</main>
+
+<footer>
+
+</footer>
+
+</body>
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script src="vue/dist/vue.min.js"></script>
+<script src="jquery/jquery.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/paymarket.js"></script>
+</html>

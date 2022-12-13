@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>越南燕窩企業形象網站</title>
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="vue-select/dist/vue-select.css">
+</head>
+<body>
+<!--導航欄開始-->
+<header th:replace="header::header"></header>
+<!--導航欄結束-->
+<!--中間主體開始-->
+<main>
+
+    <div class="container-fluid p-5 mt-5 pb-3">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <!--商品詳情開始-->
+            <div id="productApp" class="col-8 mb-5">
+                <div class="d-grid gap-3 mb-5" style="grid-template-columns: 3fr 4fr;">
+                    <div class="border">
+                        <div class="bd-example-snippet bd-code-snippet">
+                            <div class="bd-example">
+                                <img src="#" v-bind:src="product.img" class="img-fluid h-50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-light border mb-5">
+                        <div class="p-3">
+                            <h1 class="fs-2" v-text="product.name"></h1>
+                            <h5 class="fs-2" v-text="product.introduction"></h5>
+                            <hr>
+                            <div v-text="product.context">
+
+                            </div>
+                            <p>網站價格：<span class="h3 text-danger">$<span v-text="product.price"></span></span></p>
+                            <hr>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary" id="decrease">-</button>
+                                <button type="button" class="btn btn-outline-primary" id="num">1</button>
+                                <button type="button" class="btn btn-outline-primary" id="increase">+</button>
+                            </div>
+                            <br><br>
+                            <a id="market" href="#" class="btn btn-primary">
+                                加入購物車
+                            </a>
+                            <a href="pay-market.html" class="btn btn-danger">
+                                立即購買
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--商品詳情結束-->
+        </div>
+    </div>
+
+</main>
+<!--中間主體結束-->
+<!--尾部開始-->
+<footer th:replace="footer::footer">
+    <div class="fixed-bottom bg-light border-top py-3">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+
+            <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc 保留所有權利。</p>
+
+            <a href="/"
+               class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="img/logo.png">
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-twitter" style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-instagram"
+                                                                   style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-facebook" style="font-size: 30px;"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</footer>
+<!--尾部結束-->
+</body>
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
+<script src="vue/dist/vue.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/item.js"></script>
+<script src="js/paymarket.js"></script>
+<!--<script>-->
+<!--    const isLogin = localStorage.getItem('token');-->
+<!--    console.log(isLogin)-->
+<!--</script>-->
+</html>

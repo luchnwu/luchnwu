@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>越南燕窩企業形象網站</title>
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="vue-select/dist/vue-select.css">
+</head>
+<body>
+<!--導航欄開始-->
+<header th:replace="header::header"></header>
+<!--導航欄結束-->
+<!--中間主體開始-->
+<main class="container">
+    <div class="w-100 m-auto container-fluid">
+        <!--註冊頁開始-->
+        <div id="app" class="container px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <h1 class="h3 mb-3 fw-normal text-center">會員註冊</h1>
+                    <form action="/register" method="post" v-on:submit.prevent="register"
+                          class="p-3 border rounded-3 bg-light">
+
+                        <div id="error" class="alert alert-danger" style="display: none"
+                             v-bind:class="{ 'd-block':hasError }">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            <span v-text="message">message</span>
+                        </div>
+
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" id="basic-addon1">帳戶</span>
+                            <input type="text" class="form-control" placeholder="name@example.com" aria-label="email"
+                                   aria-describedby="basic-addon1" name="username" v-model="username">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" id="basic-addon2">密碼</span>
+                            <input type="text" class="form-control" placeholder="Password" aria-label="Password"
+                                   aria-describedby="basic-addon2" name="password" v-model="password">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" id="basic-addon3">確認密碼</span>
+                            <input type="text" class="form-control" placeholder="PasswordConfirm" aria-label="Confirm"
+                                   aria-describedby="basic-addon3" name="confirm" v-model="confirm">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" id="basic-addon4">姓名</span>
+                            <input type="text" class="form-control" placeholder="王大明" aria-label="Username"
+                                   aria-describedby="basic-addon4" name="name" v-model="name">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text" id="basic-addon5">電話</span>
+                            <input type="text" class="form-control" placeholder="09XXXXXXXX" aria-label="Phone"
+                                   aria-describedby="basic-addon5" name="phone" v-model="phone">
+                        </div>
+                        <div class="checkbox mb-3">
+                        </div>
+                        <hr class="my-4">
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">會員註冊</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--註冊頁結束-->
+    </div>
+</main>
+<!--中間主體結束-->
+<!--尾部開始-->
+<footer th:replace="footer::footer">
+    <div class="fixed-bottom bg-light border-top py-3">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+
+            <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc 保留所有權利。</p>
+
+            <a href="/"
+               class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="img/logo.png">
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-twitter" style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-instagram"
+                                                                   style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-facebook" style="font-size: 30px;"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</footer>
+<!--尾部結束-->
+</body>
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script src="js/register.js"></script>
+</html>

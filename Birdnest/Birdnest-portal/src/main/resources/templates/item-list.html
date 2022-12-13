@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>越南燕窩企業形象網站</title>
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<!--導航欄開始-->
+<header th:replace="header::header"></header>
+<!--導航欄結束-->
+<!--中間主體開始-->
+<main>
+    <!--頁面介紹開始-->
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Album example</h1>
+                <p class="lead text-muted">Something short and leading about the collection below—its contents, the
+                    creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it
+                    entirely.</p>
+                <p>
+                    <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--頁面介紹結束-->
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <!--商品列表開始-->
+            <div id="productsApp">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                    <div class="col" v-for="product in products">
+                        <div class="card shadow-sm">
+                            <img src="#" v-bind:src="product.img" class="bd-placeholder-img card-img-top" width="100%"
+                                 height="225" aria-label="Placeholder: Thumbnail"
+                                 preserveAspectRatio="xMidYMid slice" focusable="false">
+
+                            <div class="card-body">
+                                <p class="card-text" v-text="product.name"></p>
+                                <p class="card-text" v-text="product.introduction"></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a type="button" class="btn btn-sm btn-outline-secondary"
+                                           href="/item" v-bind:href="'/item.html?'+product.id">View</a>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--頁碼開始-->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center mt-5">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                <span v-on:click.prevent="loadProducts(pageInfo.prePage)">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item" v-for="n in pageInfo.navigatepageNums">
+                            <a class="page-link" href="#"
+                               v-on:click.prevent="loadProducts(n)"
+                               v-bind:class="{'bg-primary text-light':n===pageInfo.pageNum}">
+                                <span v-text="n">1</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <span v-on:click.prevent="loadProducts(pageInfo.nextPage)">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!--頁碼結束-->
+            </div>
+            <!--商品列表結束-->
+        </div>
+    </div>
+    </div>
+</main>
+
+<!--尾部開始-->
+<footer th:replace="footer::footer">
+    <div class="fixed-bottom bg-light border-top py-3">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+
+            <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc 保留所有權利。</p>
+
+            <a href="/"
+               class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="img/logo.png">
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-twitter" style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-instagram"
+                                                                   style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-facebook" style="font-size: 30px;"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</footer>
+<!--尾部結束-->
+</body>
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
+<script src="vue/dist/vue.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/item-list.js"></script>
+<script src="js/paymarket.js"></script>
+</html>

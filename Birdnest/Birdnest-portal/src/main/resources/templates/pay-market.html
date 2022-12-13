@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>越南燕窩企業形象網站</title>
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<!--導航欄開始-->
+<header th:replace="header::header"></header>
+<!--導航欄結束-->
+<!--中間主體開始-->
+<main>
+    <!--購物車開始-->
+    <div class="container-fluid p-5 mt-5 pb-3">
+        <h1 class="text-center">購物車</h1>
+        <form id="marketsApp">
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10">
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <td>商品</td>
+                            <td>價格</td>
+                            <td>數量</td>
+                            <td>小計</td>
+                            <td>刪除</td>
+                        </tr>
+                        <tr v-for="market in markets">
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <img class="thumbnail img-responsive" width="120px" alt="..."
+                                             src="#" v-bind:src="market.img"/></div>
+                                    <div class="col-md-7">
+                                        <p class="h3">
+                                        <p v-text="market.name"></p>
+                                        <p v-text="market.introduction"></p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><br>
+                                <p class="h3 text-danger">$<span v-bind:id="'price'+market.paymarketId"
+                                                                 v-text="market.price"></span></p></td>
+                            <td><br>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <input type="button" class="btn btn-outline-primary"
+                                           v-on:click="decrease(market.paymarketId),loadMarkets()" value="-">
+                                    <input type="button" class="btn btn-outline-primary"
+                                           v-bind:id="'num'+market.paymarketId"
+                                           v-bind:value="market.productCount">
+                                    <input type="button" class="btn btn-outline-primary"
+                                           v-on:click="increase(market.paymarketId),loadMarkets()" value="+">
+                                </div>
+                            </td>
+                            <td><br>
+                                <p class="h3 text-danger">$<span v-text="market.price * market.productCount">1200</span>
+                                </p></td>
+                            <td><br>
+                                <i v-on:click="del(market.paymarketId),loadMarkets()" class="btn bi-trash"
+                                   style="font-size: 2rem"></i>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-outline-secondary col-2">繼續購物</button>
+                        <a type="button" class="btn btn-primary col-2" href="pay.html">立即結帳</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--購物車結束-->
+</main>
+<!--中間主體結束-->
+<!--尾部開始-->
+<footer th:replace="footer::footer">
+    <div class="fixed-bottom bg-light border-top py-3">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+
+            <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc 保留所有權利。</p>
+
+            <a href="/"
+               class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="img/logo.png">
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-twitter" style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-instagram"
+                                                                   style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-facebook" style="font-size: 30px;"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</footer>
+<!--尾部結束-->
+</body>
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script src="vue/dist/vue.min.js"></script>
+<script src="jquery/jquery.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/paymarket.js"></script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>越南燕窩登入頁面</title>
+    <link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/signin.css">
+</head>
+<body>
+<!--導航欄開始-->
+<header th:replace="header::header"></header>
+<!--導航欄結束-->
+<!--中間主體開始-->
+<main class="container">
+    <div class="form-signin w-100 m-auto container-fluid">
+        <!--登入頁開始-->
+        <h1 class="h3 mb-3 fw-normal text-center">會員登入</h1>
+
+        <div id="error" class="alert alert-danger d-none">
+            <i class="fa fa-exclamation-triangle"></i> 帳號或密碼錯誤
+        </div>
+        <div id="logout" class="alert alert-info d-none">
+            <i class="fa fa-exclamation-triangle"></i> 已經登出系統
+        </div>
+        <div id="register" class="alert alert-info d-none">
+            <i class="fa fa-exclamation-triangle"></i> 成功註冊，請登陸
+        </div>
+        <form method="post" action="/login">
+
+            <div class="form-floating mb-2">
+                <input type="text" name="username" class="form-control" id="floatingInput"
+                       placeholder="name@example.com">
+                <label for="floatingInput">請輸入信箱</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" class="form-control" id="floatingPassword"
+                       placeholder="Password">
+                <label for="floatingPassword">請輸入密碼</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> 記住我
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">登入</button>
+            <hr>
+            <a class="w-100 btn btn-outline-secondary" href="register.html">尚未加入會員</a>
+            <hr>
+            <button class="w-100 btn btn-info text-white">第三方登入</button>
+        </form>
+        <!--登入頁結束-->
+    </div>
+</main>
+<!--中間主體結束-->
+<!--尾部開始-->
+<footer th:replace="footer::footer">
+    <div class="fixed-bottom bg-light border-top py-3">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+
+            <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc 保留所有權利。</p>
+
+            <a href="/"
+               class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img src="img/logo.png">
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-twitter" style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-instagram"
+                                                                   style="font-size: 30px;"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="#"><i class="bi-facebook" style="font-size: 30px;"></i></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</footer>
+<!--尾部結束-->
+</body>
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script src="js/login.js"></script>
+</html>
